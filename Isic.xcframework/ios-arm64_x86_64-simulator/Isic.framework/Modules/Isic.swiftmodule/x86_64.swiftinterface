@@ -1,0 +1,687 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.4.2 (swiftlang-1205.0.28.2 clang-1205.0.19.57)
+// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name Isic
+import CommonCrypto
+import CoreGraphics
+import Foundation
+import ImageIO
+@_exported import Isic
+import MapKit
+import Swift
+import UIKit
+extension UIImage {
+  public class func gifImageWithData(_ data: Foundation.Data) -> UIKit.UIImage?
+  public class func gifImageWithURL(_ gifUrl: Swift.String) -> UIKit.UIImage?
+  public class func gifImageWithName(_ name: Swift.String) -> UIKit.UIImage?
+}
+public enum OfferValueType : Swift.String, Swift.Decodable {
+  case PERCENTAGE
+  case PERCENTAGE_UP_TO
+  case CURRENCY
+  case CURRENCY_UP_TO
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum DiscountType : Swift.Int32, Swift.Decodable {
+  case PERCENTAGE
+  case PERCENTAGE_UP
+  case CURRENCY
+  case CURRENCY_UP_TO
+  public init?(rawValue: Swift.Int32)
+  public typealias RawValue = Swift.Int32
+  public var rawValue: Swift.Int32 {
+    get
+  }
+}
+public enum OfferCategoryType : Swift.String {
+  case CULTURE
+  case TRAVEL
+  case STUDY
+  case LEISURE
+  case SERVICES
+  case SHOPPING
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+@objc @_hasMissingDesignatedInitializers public class ISCarteViewController : UIKit.UIViewController {
+  convenience public init(model: Isic.ISCarteView, completion: Isic.RequestCompletion? = nil)
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc deinit
+  @objc override dynamic public var shouldAutorotate: Swift.Bool {
+    @objc get
+  }
+  @objc override dynamic public var supportedInterfaceOrientations: UIKit.UIInterfaceOrientationMask {
+    @objc get
+  }
+  @objc override dynamic public func viewDidLoad()
+  @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
+  @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+}
+extension ISCarteViewController : UIKit.UIScrollViewDelegate {
+  @objc dynamic public func scrollViewDidEndDragging(_ scrollView: UIKit.UIScrollView, willDecelerate decelerate: Swift.Bool)
+  @objc dynamic public func scrollViewDidEndDecelerating(_ scrollView: UIKit.UIScrollView)
+}
+public enum DateDecoderType {
+  case none
+  case dateDecoding(Foundation.JSONDecoder.DateDecodingStrategy)
+  case custom(Swift.String)
+}
+public enum RequestResult {
+  case success
+  case failure(Swift.String?, Swift.Int?)
+}
+public enum GenericResult<T> where T : Swift.Decodable {
+  case success(T)
+  case failure(Swift.String?)
+}
+public typealias RequestCompletion = (Isic.RequestResult) -> Swift.Void
+extension CIColor {
+  convenience public init(rgba: Swift.String)
+}
+public enum Category : Swift.Int32 {
+  case UNKNOWN
+  case LEASURE
+  case CULTURE
+  case SPORT
+  case SERVICES
+  case STUDY
+  case TRAVEL
+  case SHOPPING
+  case CINEMA
+  public init?(rawValue: Swift.Int32)
+  public typealias RawValue = Swift.Int32
+  public var rawValue: Swift.Int32 {
+    get
+  }
+}
+@objc @_inheritsConvenienceInitializers public class ISLieu : ObjectiveC.NSObject, MapKit.MKAnnotation {
+  public var titre: Swift.String
+  public var info: Swift.String
+  public var photo: Swift.String
+  public var lien: Swift.String
+  public var isOnline: Swift.Bool
+  public var latitude: Swift.Double
+  public var longitude: Swift.Double
+  public var category: Isic.Category
+  public var discount_type: Isic.DiscountType
+  @objc override dynamic public init()
+  @objc public var coordinate: CoreLocation.CLLocationCoordinate2D {
+    @objc get
+    @objc set(newCoordinate)
+  }
+  @objc deinit
+}
+extension NSNotification.Name {
+  public static let DidRefreshReductions: Foundation.Notification.Name
+}
+public struct AuthenticateResponse : Swift.Decodable {
+  public init(from decoder: Swift.Decoder) throws
+}
+extension UIImageView {
+  convenience public init(qrCode: Isic.QRCode)
+}
+public let URLWebServices: Swift.String
+public let NCDB_BASE_URL: Swift.String
+public let URLValidateISIC: Swift.String
+public let URLValidate2Enjoy: Swift.String
+public let RequestTimeout: Swift.Double
+public class ISReduction {
+  public var idRedution: Swift.Int
+  public var titre: Swift.String
+  public var offre: Swift.String
+  public var remise: Swift.String
+  public var photo: Swift.String
+  public var lien: Swift.String
+  public var category: Isic.Category
+  public var discount_type: Isic.DiscountType
+  public init()
+  @objc deinit
+}
+public struct ErrorResponse : Swift.Decodable {
+  public init(from decoder: Swift.Decoder) throws
+}
+public enum ISLanguage : Swift.String {
+  case french
+  case english
+  public init(code: Swift.String)
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public func ISLocalizedString(key: Foundation.NSString, _ args: Swift.CVarArg...) -> (Swift.String)
+public enum ISFormattersTemplate : Swift.String {
+  case yyyyMMddHHmmss
+  case ddMMyyyyHHmmss
+  case MMddyyyyHHmmss
+  case yyyyMMdd
+  case ddMMyyyy
+  case MMyyyy
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public protocol ISCarteView {
+  var cardIsExpired: Swift.String { get }
+  var cardIsValid: Swift.String { get }
+  var isOkTitle: Swift.String { get }
+  var cardExpireDialogTitle: Swift.String { get }
+  var cardExpireDialogMessage: Swift.String { get }
+  var cardCancelTitle: Swift.String { get }
+  var cardRenewTitle: Swift.String { get }
+  var cardValidDate: Swift.String { get }
+  var dataErrorTitle: Swift.String { get }
+  var loadDataError: Swift.String { get }
+  var buttonOkTitle: Swift.String { get }
+  var frontImagePath: Swift.String? { get }
+  var backImagePath: Swift.String? { get }
+  var renewCardURL: Foundation.URL? { get }
+  var hologramName: Swift.String { get }
+  var cardVendorTitle: Swift.String { get }
+  func getCardData(completion: @escaping Isic.RequestCompletion)
+  func getCardId() -> Swift.String?
+  func isCardValid() -> Swift.Bool
+  func getValues() -> [Swift.String : Any]
+  func getPositions() -> [Swift.String : Any]
+}
+final public class ISCarteViewModel {
+  public init(cardID: Swift.String)
+  @objc deinit
+}
+extension ISCarteViewModel : Isic.ISCarteView {
+  final public var cardIsExpired: Swift.String {
+    get
+  }
+  final public var cardIsValid: Swift.String {
+    get
+  }
+  final public var isOkTitle: Swift.String {
+    get
+  }
+  final public var cardExpireDialogTitle: Swift.String {
+    get
+  }
+  final public var cardExpireDialogMessage: Swift.String {
+    get
+  }
+  final public var renewCardURL: Foundation.URL? {
+    get
+  }
+  final public var cardVendorTitle: Swift.String {
+    get
+  }
+  final public var hologramName: Swift.String {
+    get
+  }
+  final public var cardCancelTitle: Swift.String {
+    get
+  }
+  final public var cardRenewTitle: Swift.String {
+    get
+  }
+  final public var cardValidDate: Swift.String {
+    get
+  }
+  final public var dataErrorTitle: Swift.String {
+    get
+  }
+  final public var buttonOkTitle: Swift.String {
+    get
+  }
+  final public var loadDataError: Swift.String {
+    get
+  }
+  final public func getCardId() -> Swift.String?
+  final public func getCardData(completion: @escaping Isic.RequestCompletion)
+  final public func isCardValid() -> Swift.Bool
+  final public var frontImagePath: Swift.String? {
+    get
+  }
+  final public var backImagePath: Swift.String? {
+    get
+  }
+  final public func getValues() -> [Swift.String : Any]
+  final public func getPositions() -> [Swift.String : Any]
+}
+public enum SwiftyJSONError : Swift.Int, Swift.Error {
+  case unsupportedType
+  case indexOutOfBounds
+  case elementTooDeep
+  case wrongType
+  case notExist
+  case invalidJSON
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+extension SwiftyJSONError : Foundation.CustomNSError {
+  public static var errorDomain: Swift.String {
+    get
+  }
+  public var errorCode: Swift.Int {
+    get
+  }
+  public var errorUserInfo: [Swift.String : Any] {
+    get
+  }
+}
+public enum Type : Swift.Int {
+  case number
+  case string
+  case bool
+  case array
+  case dictionary
+  case null
+  case unknown
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public struct JSON {
+  public init(data: Foundation.Data, options opt: Foundation.JSONSerialization.ReadingOptions = []) throws
+  public init(_ object: Any)
+  public init(parseJSON jsonString: Swift.String)
+  public mutating func merge(with other: Isic.JSON) throws
+  public func merged(with other: Isic.JSON) throws -> Isic.JSON
+  public var type: Isic.`Type` {
+    get
+  }
+  public var error: Isic.SwiftyJSONError? {
+    get
+  }
+  public var object: Any {
+    get
+    set
+  }
+  @available(*, unavailable, renamed: "null")
+  public static var nullJSON: Isic.JSON {
+    get
+  }
+  public static var null: Isic.JSON {
+    get
+  }
+}
+public enum Index<T> : Swift.Comparable {
+  case array(Swift.Int)
+  case dictionary(Swift.DictionaryIndex<Swift.String, T>)
+  case null
+  public static func == (lhs: Isic.Index<T>, rhs: Isic.Index<T>) -> Swift.Bool
+  public static func < (lhs: Isic.Index<T>, rhs: Isic.Index<T>) -> Swift.Bool
+}
+public typealias JSONIndex = Isic.Index<Isic.JSON>
+public typealias JSONRawIndex = Isic.Index<Any>
+extension JSON : Swift.Collection {
+  public typealias Index = Isic.JSONRawIndex
+  public var startIndex: Isic.JSON.Index {
+    get
+  }
+  public var endIndex: Isic.JSON.Index {
+    get
+  }
+  public func index(after i: Isic.JSON.Index) -> Isic.JSON.Index
+  public subscript(position: Isic.JSON.Index) -> (Swift.String, Isic.JSON) {
+    get
+  }
+  public typealias Element = (Swift.String, Isic.JSON)
+  public typealias Indices = Swift.DefaultIndices<Isic.JSON>
+  public typealias Iterator = Swift.IndexingIterator<Isic.JSON>
+  public typealias SubSequence = Swift.Slice<Isic.JSON>
+}
+public enum JSONKey {
+  case index(Swift.Int)
+  case key(Swift.String)
+}
+public protocol JSONSubscriptType {
+  var jsonKey: Isic.JSONKey { get }
+}
+extension Int : Isic.JSONSubscriptType {
+  public var jsonKey: Isic.JSONKey {
+    get
+  }
+}
+extension String : Isic.JSONSubscriptType {
+  public var jsonKey: Isic.JSONKey {
+    get
+  }
+}
+extension JSON {
+  public subscript(path: [Isic.JSONSubscriptType]) -> Isic.JSON {
+    get
+    set
+  }
+  public subscript(path: Isic.JSONSubscriptType...) -> Isic.JSON {
+    get
+    set
+  }
+}
+extension JSON : Swift.ExpressibleByStringLiteral {
+  public init(stringLiteral value: Swift.StringLiteralType)
+  public init(extendedGraphemeClusterLiteral value: Swift.StringLiteralType)
+  public init(unicodeScalarLiteral value: Swift.StringLiteralType)
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.StringLiteralType
+  public typealias StringLiteralType = Swift.StringLiteralType
+  public typealias UnicodeScalarLiteralType = Swift.StringLiteralType
+}
+extension JSON : Swift.ExpressibleByIntegerLiteral {
+  public init(integerLiteral value: Swift.IntegerLiteralType)
+  public typealias IntegerLiteralType = Swift.IntegerLiteralType
+}
+extension JSON : Swift.ExpressibleByBooleanLiteral {
+  public init(booleanLiteral value: Swift.BooleanLiteralType)
+  public typealias BooleanLiteralType = Swift.BooleanLiteralType
+}
+extension JSON : Swift.ExpressibleByFloatLiteral {
+  public init(floatLiteral value: Swift.FloatLiteralType)
+  public typealias FloatLiteralType = Swift.FloatLiteralType
+}
+extension JSON : Swift.ExpressibleByDictionaryLiteral {
+  public init(dictionaryLiteral elements: (Swift.String, Any)...)
+  public typealias Key = Swift.String
+  public typealias Value = Any
+}
+extension JSON : Swift.ExpressibleByArrayLiteral {
+  public init(arrayLiteral elements: Any...)
+  public typealias ArrayLiteralElement = Any
+}
+extension JSON : Swift.RawRepresentable {
+  public init?(rawValue: Any)
+  public var rawValue: Any {
+    get
+  }
+  public func rawData(options opt: Foundation.JSONSerialization.WritingOptions = JSONSerialization.WritingOptions(rawValue: 0)) throws -> Foundation.Data
+  public func rawString(_ encoding: Swift.String.Encoding = .utf8, options opt: Foundation.JSONSerialization.WritingOptions = .prettyPrinted) -> Swift.String?
+  public func rawString(_ options: [Isic.writingOptionsKeys : Any]) -> Swift.String?
+  public typealias RawValue = Any
+}
+extension JSON : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension JSON {
+  public var array: [Isic.JSON]? {
+    get
+  }
+  public var arrayValue: [Isic.JSON] {
+    get
+  }
+  public var arrayObject: [Any]? {
+    get
+    set
+  }
+}
+extension JSON {
+  public var dictionary: [Swift.String : Isic.JSON]? {
+    get
+  }
+  public var dictionaryValue: [Swift.String : Isic.JSON] {
+    get
+  }
+  public var dictionaryObject: [Swift.String : Any]? {
+    get
+    set
+  }
+}
+extension JSON {
+  public var bool: Swift.Bool? {
+    get
+    set
+  }
+  public var boolValue: Swift.Bool {
+    get
+    set
+  }
+}
+extension JSON {
+  public var string: Swift.String? {
+    get
+    set
+  }
+  public var stringValue: Swift.String {
+    get
+    set
+  }
+}
+extension JSON {
+  public var number: Foundation.NSNumber? {
+    get
+    set
+  }
+  public var numberValue: Foundation.NSNumber {
+    get
+    set
+  }
+}
+extension JSON {
+  public var null: Foundation.NSNull? {
+    get
+    set
+  }
+  public func exists() -> Swift.Bool
+}
+extension JSON {
+  public var url: Foundation.URL? {
+    get
+    set
+  }
+}
+extension JSON {
+  public var double: Swift.Double? {
+    get
+    set
+  }
+  public var doubleValue: Swift.Double {
+    get
+    set
+  }
+  public var float: Swift.Float? {
+    get
+    set
+  }
+  public var floatValue: Swift.Float {
+    get
+    set
+  }
+  public var int: Swift.Int? {
+    get
+    set
+  }
+  public var intValue: Swift.Int {
+    get
+    set
+  }
+  public var uInt: Swift.UInt? {
+    get
+    set
+  }
+  public var uIntValue: Swift.UInt {
+    get
+    set
+  }
+  public var int8: Swift.Int8? {
+    get
+    set
+  }
+  public var int8Value: Swift.Int8 {
+    get
+    set
+  }
+  public var uInt8: Swift.UInt8? {
+    get
+    set
+  }
+  public var uInt8Value: Swift.UInt8 {
+    get
+    set
+  }
+  public var int16: Swift.Int16? {
+    get
+    set
+  }
+  public var int16Value: Swift.Int16 {
+    get
+    set
+  }
+  public var uInt16: Swift.UInt16? {
+    get
+    set
+  }
+  public var uInt16Value: Swift.UInt16 {
+    get
+    set
+  }
+  public var int32: Swift.Int32? {
+    get
+    set
+  }
+  public var int32Value: Swift.Int32 {
+    get
+    set
+  }
+  public var uInt32: Swift.UInt32? {
+    get
+    set
+  }
+  public var uInt32Value: Swift.UInt32 {
+    get
+    set
+  }
+  public var int64: Swift.Int64? {
+    get
+    set
+  }
+  public var int64Value: Swift.Int64 {
+    get
+    set
+  }
+  public var uInt64: Swift.UInt64? {
+    get
+    set
+  }
+  public var uInt64Value: Swift.UInt64 {
+    get
+    set
+  }
+}
+extension JSON : Swift.Comparable {
+}
+public func == (lhs: Isic.JSON, rhs: Isic.JSON) -> Swift.Bool
+public func <= (lhs: Isic.JSON, rhs: Isic.JSON) -> Swift.Bool
+public func >= (lhs: Isic.JSON, rhs: Isic.JSON) -> Swift.Bool
+public func > (lhs: Isic.JSON, rhs: Isic.JSON) -> Swift.Bool
+public func < (lhs: Isic.JSON, rhs: Isic.JSON) -> Swift.Bool
+public enum writingOptionsKeys {
+  case jsonSerialization
+  case castNilToNSNull
+  case maxObjextDepth
+  case encoding
+  public static func == (a: Isic.writingOptionsKeys, b: Isic.writingOptionsKeys) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension JSON : Swift.Codable {
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public typealias 🔳 = Isic.QRCode
+public struct QRCode {
+  public enum ErrorCorrection : Swift.String {
+    case Low
+    case Medium
+    case Quartile
+    case High
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public let data: Foundation.Data
+  public var color: CoreImage.CIColor
+  public var backgroundColor: CoreImage.CIColor
+  public var size: CoreGraphics.CGSize
+  public var errorCorrection: Isic.QRCode.ErrorCorrection
+  public init(_ data: Foundation.Data)
+  public init?(_ string: Swift.String)
+  public init?(_ url: Foundation.URL)
+  public var image: UIKit.UIImage? {
+    get
+  }
+  public var ciImage: CoreImage.CIImage? {
+    get
+  }
+}
+public let defaultPageSize: Swift.Int
+public struct Config {
+  public var apiToken: Swift.String
+  public var apiURL: Swift.String?
+  public var language: Isic.ISLanguage?
+  public var pageSize: Swift.Int?
+  public init(apiToken: Swift.String, apiURL: Swift.String? = URLWebServices, language: Isic.ISLanguage? = .french, pageSize: Swift.Int? = defaultPageSize)
+}
+@_hasMissingDesignatedInitializers public class IsicFrance {
+  public var language: Isic.ISLanguage
+  public var reductionsPageSize: Swift.Int
+  public static let shared: Isic.IsicFrance
+  public class func setup(_ config: Isic.Config)
+  public func checkSDK(completion: @escaping Isic.RequestCompletion)
+  @available(*, deprecated)
+  public func checkSDK()
+  public func isValidSDK() -> Swift.Bool
+  public func updateReductions(completion: @escaping Isic.RequestCompletion)
+  @available(*, deprecated)
+  public func updateReductions()
+  public func reduction(lien: Swift.String) -> Isic.ISReduction?
+  public func reductions(page: Swift.Int, keywords: Swift.String) -> [Isic.ISReduction]?
+  public func reductions(keywords: Swift.String) -> [Isic.ISReduction]?
+  public func lieux(region: MapKit.MKCoordinateRegion, keywords: Swift.String) -> [Isic.ISLieu]?
+  public func region(keywords: Swift.String) -> MapKit.MKCoordinateRegion?
+  @objc deinit
+}
+extension Isic.OfferValueType : Swift.Equatable {}
+extension Isic.OfferValueType : Swift.Hashable {}
+extension Isic.OfferValueType : Swift.RawRepresentable {}
+extension Isic.DiscountType : Swift.Equatable {}
+extension Isic.DiscountType : Swift.Hashable {}
+extension Isic.DiscountType : Swift.RawRepresentable {}
+extension Isic.OfferCategoryType : Swift.Equatable {}
+extension Isic.OfferCategoryType : Swift.Hashable {}
+extension Isic.OfferCategoryType : Swift.RawRepresentable {}
+extension Isic.Category : Swift.Equatable {}
+extension Isic.Category : Swift.Hashable {}
+extension Isic.Category : Swift.RawRepresentable {}
+extension Isic.ISLanguage : Swift.Equatable {}
+extension Isic.ISLanguage : Swift.Hashable {}
+extension Isic.ISLanguage : Swift.RawRepresentable {}
+extension Isic.ISFormattersTemplate : Swift.Equatable {}
+extension Isic.ISFormattersTemplate : Swift.Hashable {}
+extension Isic.ISFormattersTemplate : Swift.RawRepresentable {}
+extension Isic.SwiftyJSONError : Swift.Equatable {}
+extension Isic.SwiftyJSONError : Swift.Hashable {}
+extension Isic.SwiftyJSONError : Swift.RawRepresentable {}
+extension Isic.`Type` : Swift.Equatable {}
+extension Isic.`Type` : Swift.Hashable {}
+extension Isic.`Type` : Swift.RawRepresentable {}
+extension Isic.writingOptionsKeys : Swift.Equatable {}
+extension Isic.writingOptionsKeys : Swift.Hashable {}
+extension Isic.QRCode.ErrorCorrection : Swift.Equatable {}
+extension Isic.QRCode.ErrorCorrection : Swift.Hashable {}
+extension Isic.QRCode.ErrorCorrection : Swift.RawRepresentable {}

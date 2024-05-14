@@ -1,0 +1,11 @@
+framework module Isic {
+  umbrella header "Isic.h"
+
+  export *
+  module * { export * }
+}
+
+module Isic.Swift {
+    header "Isic-Swift.h"
+    requires objc
+}
